@@ -103,16 +103,16 @@ export default {
     text-shadow: 1px 1px 2px $bg-dark;
 
     figure {
-        width: 200px;
-        height: 200px;
+        width: 10rem;
+        height: 10rem;
         border-radius: 50%;
         box-shadow: 1px 1px 1px $bg-dark;
         overflow: hidden;
         margin: 0 auto;
 
         img {
-            width: 200px;
-            height: 200px;
+            width: 10rem;
+            height: 10rem;
             object-fit: cover;
             display: block;
         }
