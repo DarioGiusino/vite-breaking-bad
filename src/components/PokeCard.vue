@@ -19,7 +19,7 @@ export default {
 
 <template>
     <div class="col">
-        <div class="poke-card mb-3">
+        <div class="poke-card mb-3" :class="type1.toLowerCase()">
             <!-- poke image -->
             <figure>
                 <img class="img-fluid" :src="img" :alt="name">
@@ -30,8 +30,8 @@ export default {
 
             <!-- poke-types -->
             <div class="types d-flex justify-content-around">
-                <p>{{ type1 }}</p>
-                <p v-if="type2">{{ type2 }}</p>
+                <p :class="type1.toLowerCase()">{{ type1 }}</p>
+                <p v-if="type2" :class="type2.toLowerCase()">{{ type2 }}</p>
             </div>
 
             <!-- measures -->
@@ -92,9 +92,10 @@ export default {
 
 <style lang="scss" scoped>
 @use '../assets/scss/partials/variables' as *;
+@use '../assets/scss/style.scss' as *;
 
 .poke-card {
-    background-color: rgba($grass, 0.8);
+    opacity: 0.8;
     padding: 0.5rem;
     border: 8px solid #decb3e;
     border-radius: 5px;
@@ -119,10 +120,9 @@ export default {
 
     .types {
         p {
-            background-color: $grass;
             padding: 3px 8px;
             border-radius: 10px;
-            box-shadow: 1px 1px 1px $bg-dark;
+            box-shadow: 2px 2px 5px $bg-dark;
         }
     }
 
