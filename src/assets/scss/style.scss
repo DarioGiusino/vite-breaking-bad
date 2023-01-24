@@ -1,0 +1,7 @@
+@use "./partials/variables" as *;
+
+// # generics
+body {
+  min-height: 100vh;
+  background-color: $bg-dark;
+}
