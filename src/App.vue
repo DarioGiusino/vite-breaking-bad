@@ -15,12 +15,19 @@ export default {
       axios.get(url)
         .then(res => {
           store.pokemons = res.data.docs;
+          store.nextPage = res.data.nextPage;
+          store.prevPage = res.data.prevPage;
         }).catch(e => {
           store.pokemons = []
         }).then(() => {
           store.isLoading = false
         })
+    },
 
+    //change page
+    changePage(numb) {
+      // if (!store.prevPage || !store.nextPage) return
+      this.fetchPokemon(`https://41tyokboji.execute-api.eu-central-1.amazonaws.com/dev/api/v1/pokemons?per=10&page=${numb}`)
     }
   },
   mounted() {
@@ -32,6 +39,12 @@ export default {
 <template>
   <header class="container text-center my-4">
     <h1>Pokedex</h1>
+    <ul class="pagination">
+      <li class="page-item" @click="changePage(this.store.prevPage)"><span class="page-link"
+          role="button">Previous</span></li>
+      <li class="page-item" @click="changePage(this.store.nextPage)"><span class="page-link" role="button">Next</span>
+      </li>
+    </ul>
   </header>
   <poke-list></poke-list>
 
