@@ -10,9 +10,16 @@ export default {
   methods: {
     // get pokemon list and push in store
     fetchPokemon(url) {
-      axios.get(url).then(res => {
-        store.pokemons = res.data.docs;
-      })
+      store.isLoading = true;
+
+      axios.get(url)
+        .then(res => {
+          store.pokemons = res.data.docs;
+        }).catch(e => {
+          store.pokemons = []
+        }).then(() => {
+          store.isLoading = false
+        })
 
     }
   },
