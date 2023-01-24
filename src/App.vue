@@ -7,11 +7,17 @@ export default {
   data() {
     return { store }
   },
-  created() {
-    axios.get('https://41tyokboji.execute-api.eu-central-1.amazonaws.com/dev/api/v1/pokemons?per=10&page=1').then(res => {
-      console.log(res.data);
-    })
+  methods: {
+    // get pokemon list and push in store
+    fetchPokemon() {
+      axios.get('https://41tyokboji.execute-api.eu-central-1.amazonaws.com/dev/api/v1/pokemons?per=10&page=1').then(res => {
+        store.pokemons = res.data.docs;
+      })
 
+    }
+  },
+  mounted() {
+    this.fetchPokemon();
   }
 }
 </script>

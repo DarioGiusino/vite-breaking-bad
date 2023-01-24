@@ -1,30 +1,47 @@
 <script>
-export default {}
+export default {
+    props: {
+        img: String,
+        name: String,
+        type1: String,
+        type2: String,
+        weight: Number,
+        height: Number,
+        hp: Number,
+        atk: Number,
+        spAtk: Number,
+        def: Number,
+        spDef: Number,
+        spd: Number
+    }
+}
 </script>
 
 <template>
     <div class="col">
-        <div class="poke-card">
+        <div class="poke-card mb-3">
             <!-- poke image -->
-            <img class="img-fluid" src="https://img.pokemondb.net/artwork/large/bulbasaur.jpg" alt="">
+            <figure>
+                <img class="img-fluid" :src="img" :alt="name">
+            </figure>
 
             <!-- poke name -->
-            <h3 class="text-center">bulba</h3>
+            <h4 class="text-center mb-3">{{ name }}</h4>
 
             <!-- poke-types -->
             <div class="types d-flex justify-content-around">
-                <p>grass</p>
-                <p>poison</p>
+                <p>{{ type1 }}</p>
+                <p v-if="type2">{{ type2 }}</p>
             </div>
 
             <!-- measures -->
             <div class="measures d-flex justify-content-around">
                 <div class="weight text-center">
-                    <p class="mb-0"><strong>90 KG</strong></p>
+                    <p class="mb-0"><strong>{{ weight }} KG</strong></p>
                     <label>Weight</label>
                 </div>
                 <div class="height text-center">
-                    <p class="mb-0"><strong>1.7 M</strong></p>
+                    <p class="mb-0"><strong>{{ height }} M</strong></p>
                     <label>Height</label>
                 </div>
             </div>
@@ -35,37 +52,37 @@ export default {}
                 <div class="stat d-flex align-items-center">
                     <p class="me-2 mb-1">HP</p>
                     <div class="progress flex-grow-1">
-                        <div class="progress-bar hp" style="width: 25%">25%</div>
+                        <div class="progress-bar hp" :style="`width: calc(${hp}% / 2)`">{{ hp }}</div>
                     </div>
                 </div>
                 <div class="stat d-flex align-items-center">
                     <p class="me-2 mb-1">ATK</p>
                     <div class="progress flex-grow-1">
-                        <div class="progress-bar atk" style="width: 25%">25%</div>
+                        <div class="progress-bar atk" :style="`width: calc(${atk}% / 2)`">{{ atk }}</div>
                     </div>
                 </div>
                 <div class="stat d-flex align-items-center">
                     <p class="me-2 mb-1">SP.ATK</p>
                     <div class="progress flex-grow-1">
-                        <div class="progress-bar sp-atk" style="width: 25%">25%</div>
+                        <div class="progress-bar sp-atk" :style="`width: calc(${spAtk}% / 2)`">{{ spAtk }}</div>
                     </div>
                 </div>
                 <div class="stat d-flex align-items-center">
                     <p class="me-2 mb-1">DEF</p>
                     <div class="progress flex-grow-1">
-                        <div class="progress-bar def" style="width: 25%">25%</div>
+                        <div class="progress-bar def" :style="`width: calc(${def}% / 2)`">{{ def }}</div>
                     </div>
                 </div>
                 <div class="stat d-flex align-items-center">
                     <p class="me-2 mb-1">SP.DEF</p>
                     <div class="progress flex-grow-1">
-                        <div class="progress-bar sp-def" style="width: 25%">25%</div>
+                        <div class="progress-bar sp-def" :style="`width: calc(${spDef}% / 2)`">{{ spDef }}</div>
                     </div>
                 </div>
                 <div class="stat d-flex align-items-center">
                     <p class="me-2 mb-1">SPD</p>
                     <div class="progress flex-grow-1">
-                        <div class="progress-bar spd" style="width: 25%">25%</div>
+                        <div class="progress-bar spd" :style="`width: calc(${spd}% / 2)`">{{ spd }}</div>
                     </div>
                 </div>
             </div>
@@ -84,9 +101,20 @@ export default {}
     box-shadow: 1px 1px 5px $font-color;
     text-shadow: 1px 1px 2px $bg-dark;
 
-    img {
+    figure {
+        width: 200px;
+        height: 200px;
         border-radius: 50%;
         box-shadow: 1px 1px 1px $bg-dark;
+        overflow: hidden;
+        margin: 0 auto;
+
+        img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
     }
 
     .types {
