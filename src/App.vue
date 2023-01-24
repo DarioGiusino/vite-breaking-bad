@@ -9,15 +9,15 @@ export default {
   },
   methods: {
     // get pokemon list and push in store
-    fetchPokemon() {
-      axios.get('https://41tyokboji.execute-api.eu-central-1.amazonaws.com/dev/api/v1/pokemons?per=10&page=1').then(res => {
+    fetchPokemon(url) {
+      axios.get(url).then(res => {
         store.pokemons = res.data.docs;
       })
 
     }
   },
   mounted() {
-    this.fetchPokemon();
+    this.fetchPokemon('https://41tyokboji.execute-api.eu-central-1.amazonaws.com/dev/api/v1/pokemons?per=10&page=1');
   }
 }
 </script>
