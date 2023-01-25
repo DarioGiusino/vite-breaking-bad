@@ -5,7 +5,10 @@ import { store } from './data/store';
 export default {
   components: { PokeList },
   data() {
-    return { store }
+    return {
+      store,
+      apiUri: 'https://41tyokboji.execute-api.eu-central-1.amazonaws.com/dev/api/v1/pokemons'
+    }
   },
   methods: {
     // get pokemon list and push in store
@@ -27,11 +30,11 @@ export default {
     //change page
     changePage(numb) {
       if (!numb) return
-      this.fetchPokemon(`https://41tyokboji.execute-api.eu-central-1.amazonaws.com/dev/api/v1/pokemons?per=10&page=${numb}`)
+      this.fetchPokemon(`${this.apiUri}?per=10&page=${numb}`)
     }
   },
   mounted() {
-    this.fetchPokemon('https://41tyokboji.execute-api.eu-central-1.amazonaws.com/dev/api/v1/pokemons?per=10&page=1');
+    this.fetchPokemon(`${this.apiUri}?per=10&page=1`);
   }
 }
 </script>
