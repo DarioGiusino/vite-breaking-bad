@@ -8,7 +8,7 @@ export default {
     return {
       store,
       apiUri: 'https://41tyokboji.execute-api.eu-central-1.amazonaws.com/dev/api/v1/pokemons',
-      pokeTypes: []
+      pokeTypes: [],
     }
   },
   methods: {
@@ -35,6 +35,11 @@ export default {
         })
     },
 
+    showPokemonByType(type) {
+      this.fetchPokemon(`${this.apiUri}?per=10&page=1&eq[type1]=${type}`)
+      // console.log(`${this.apiUri}?per=10&page=1&eq[type1]=${type}`);
+    },
+
     //change page
     changePage(numb) {
       if (!numb) return
@@ -42,7 +47,7 @@ export default {
     }
   },
   mounted() {
-    this.fetchPokemon(`${this.apiUri}?per=10&page=1`);
+    this.fetchPokemon(`${this.apiUri}?per=10&page=1&eq[type1]=grass`);
     this.getPokemonTypes(`${this.apiUri}/types1`)
   }
 }
@@ -58,7 +63,7 @@ export default {
       </li>
     </ul>
   </header>
-  <poke-list :poke-types="pokeTypes"></poke-list>
+  <poke-list :poke-types="pokeTypes" @type-selected="showPokemonByType"></poke-list>
 
 </template>
 

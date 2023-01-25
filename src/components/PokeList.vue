@@ -8,7 +8,13 @@ export default {
     data() {
         return store
     },
-    props: { pokeTypes: Array }
+    props: { pokeTypes: Array },
+    methods: {
+        onSelect(type) {
+            this.$emit('type-selected', type)
+        }
+    },
+    emits: ['type-selected']
 }
 </script>
 
@@ -17,7 +23,7 @@ export default {
 
         <!-- search pokemon by type -->
         <p class="mb-0">Filtra Pokemon per tipo</p>
-        <select-filter :list="pokeTypes"></select-filter>
+        <select-filter :list="pokeTypes" @selected="onSelect"></select-filter>
 
         <!-- loader -->
         <app-loader v-if="isLoading"></app-loader>
