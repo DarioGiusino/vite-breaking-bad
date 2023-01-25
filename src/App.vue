@@ -7,7 +7,8 @@ export default {
   data() {
     return {
       store,
-      apiUri: 'https://41tyokboji.execute-api.eu-central-1.amazonaws.com/dev/api/v1/pokemons'
+      apiUri: 'https://41tyokboji.execute-api.eu-central-1.amazonaws.com/dev/api/v1/pokemons',
+      pokeTypes: []
     }
   },
   methods: {
@@ -27,6 +28,13 @@ export default {
         })
     },
 
+    getPokemonTypes(url) {
+      axios.get(url)
+        .then((res) => {
+          this.pokeTypes = res.data
+        })
+    },
+
     //change page
     changePage(numb) {
       if (!numb) return
@@ -35,6 +43,7 @@ export default {
   },
   mounted() {
     this.fetchPokemon(`${this.apiUri}?per=10&page=1`);
+    this.getPokemonTypes(`${this.apiUri}/types1`)
   }
 }
 </script>
