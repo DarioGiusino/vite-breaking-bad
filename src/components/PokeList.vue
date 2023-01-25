@@ -1,9 +1,10 @@
 <script>
 import PokeCard from './PokeCard.vue';
 import AppLoader from './AppLoader.vue';
+import SelectFilter from './SelectFilter.vue';
 import { store } from '../data/store';
 export default {
-    components: { PokeCard, AppLoader },
+    components: { PokeCard, AppLoader, SelectFilter },
     data() {
         return store
     },
@@ -16,12 +17,7 @@ export default {
 
         <!-- search pokemon by type -->
         <p class="mb-0">Filtra Pokemon per tipo</p>
-        <select class="form-select mb-3">
-            <option value="0">Open this select menu</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-        </select>
+        <select-filter :list="pokeTypes"></select-filter>
 
         <!-- loader -->
         <app-loader v-if="isLoading"></app-loader>
