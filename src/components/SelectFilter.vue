@@ -3,7 +3,7 @@ export default {
     name: 'Select Filter',
     data() {
         return {
-            value: 'all'
+            value: ''
         }
     },
     props: { list: Array },
@@ -13,7 +13,7 @@ export default {
 
 <template>
     <select class="form-select mb-3" v-model="value" @change="$emit('selected', value)">
-        <option value="all" selected>All</option>
+        <option value="">All</option>
         <option v-for="item in list" :value="item">{{ item }}</option>
     </select>
 </template>
