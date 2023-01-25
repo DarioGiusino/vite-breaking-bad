@@ -2,9 +2,10 @@
 import PokeCard from './PokeCard.vue';
 import AppLoader from './AppLoader.vue';
 import SelectFilter from './SelectFilter.vue';
+import TextFilter from './TextFilter.vue';
 import { store } from '../data/store';
 export default {
-    components: { PokeCard, AppLoader, SelectFilter },
+    components: { PokeCard, AppLoader, SelectFilter, TextFilter },
     data() {
         return store
     },
@@ -12,9 +13,13 @@ export default {
     methods: {
         onSelect(type) {
             this.$emit('type-selected', type)
+        },
+
+        onWrite(word) {
+            this.$emit('change-word', word)
         }
     },
-    emits: ['type-selected']
+    emits: ['type-selected', 'change-word']
 }
 </script>
 
@@ -24,6 +29,10 @@ export default {
         <!-- search pokemon by type -->
         <p class="mb-0">Filtra Pokemon per tipo</p>
         <select-filter :list="pokeTypes" @selected="onSelect"></select-filter>
+
+        <!-- search pokemon by text -->
+        <p class="mb-0">Filtra Pokemon per nome</p>
+        <text-filter @change-word="onWrite"></text-filter>
 
         <!-- loader -->
         <app-loader v-if="isLoading"></app-loader>

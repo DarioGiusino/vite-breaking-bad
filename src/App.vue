@@ -9,7 +9,8 @@ export default {
       store,
       apiUri: 'https://41tyokboji.execute-api.eu-central-1.amazonaws.com/dev/api/v1/pokemons',
       pokeTypes: [],
-      type: ''
+      type: '',
+      searchTerm: ''
     }
   },
   methods: {
@@ -46,6 +47,11 @@ export default {
       // console.log(`${this.apiUri}?per=10&page=1&eq[type1]=${type}`);
     },
 
+    showPokemonByName(word) {
+      this.searchTerm = word;
+      this.fetchPokemon(`${this.apiUri}?per=10&page=1&q[name]=${word}`)
+    },
+
     //change page
     changePage(numb) {
       if (!numb) return
@@ -73,7 +79,7 @@ export default {
       </li>
     </ul>
   </header>
-  <poke-list :poke-types="pokeTypes" @type-selected="showPokemonByType"></poke-list>
+  <poke-list :poke-types="pokeTypes" @type-selected="showPokemonByType" @change-word="showPokemonByName"></poke-list>
 
 </template>
 
