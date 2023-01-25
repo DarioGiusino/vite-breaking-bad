@@ -58,7 +58,7 @@ export default {
       </li>
     </ul>
   </header>
-  <poke-list></poke-list>
+  <poke-list :poke-types="pokeTypes"></poke-list>
 
 </template>
 

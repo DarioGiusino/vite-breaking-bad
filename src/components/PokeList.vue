@@ -6,7 +6,8 @@ export default {
     components: { PokeCard, AppLoader },
     data() {
         return store
-    }
+    },
+    props: { pokeTypes: Array }
 }
 </script>
 
